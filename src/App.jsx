@@ -5,7 +5,7 @@ import './App.css'
 const App = ()=> {
     // Lo que ejecuta la funcion 
     return (<div>
-        Calc app
+       
 
     </div>)
 
