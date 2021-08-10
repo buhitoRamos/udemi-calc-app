@@ -4,25 +4,25 @@ import Button from './Button'
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
 
-const renderButtons = onClickNumbers => {
+const renderButtons = onClickNumber => {
   return (
     numbers.map(number =>
-      <Button key={number.toString()}
+      <Button key={number}
         text={number.toString()}
-        clickHandler={onClickNumbers}
+        clickHandler={onClickNumber}
       />
     )
   )
 }
 
-const Numbers = ({ onClickNumbers }) => (
+const Numbers = ({ onClickNumber }) => (
   <section className="numbers">
     {
-      renderButtons(onClickNumbers)
+      renderButtons(onClickNumber)
     }
   </section>
 )
 Numbers.PropsTypes = {
-  onClickNumbers: PropsTypes.func.isRequired
+  onClickNumber: PropsTypes.func.isRequired
 }
 export default Numbers
