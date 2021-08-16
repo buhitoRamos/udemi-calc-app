@@ -12,14 +12,40 @@ const App = () => {
   const [stack, setStack] = useState("");
   const items = words(stack, /[^-^+^*^/]+/g);
   const value = items.length > 0 ? items[items.length - 1] : "0";
-  console.log(items)
+  const keyImput = key  => {
+    console.log(key)
+    console.log(`presiono tecla ${key.key}`);
+    const number = key.code.includes("Numpad") && 
+    !key.code.includes("NumpadEnter") ?
+   words(key.key,  /[^-^+^*^/]+/g ) : false;
+    console.log(`el valor de number es ${number}`)
+    if(number.length > 0) { 
+      setStack(`${stack}${number}`)
+    } else {
+    let matOperation = key.code.includes("Divide") ||
+    key.code.includes("Numpad") ||
+    key.code.includes("Add") ||
+    key.code.includes("Mult") ||
+    key.code.includes("Sub") ?
+    key.key : false;
+    if(matOperation && matOperation !=="Enter") {
+      setStack(`${stack}${matOperation}`)
+    } else {
+     // setStack(`${eval(stack).toString()}`)
+    }
+
+    }
+    
+
+  }
+ 
 
 
   // Lo que ejecuta la funcion 
   //template literals o string son para concatenar string ecmaS 6 
   // para diferenciasr operaciones aritmeticas de concatenacion de strings `${a} ${b}`
   return (
-    <main className='react-calculator'>
+    <main className='react-calculator' onKeyUp= {(key)=> keyImput(key)}>
       <Result value={value} />
       <Numbers onClickNumber={number => setStack(`${stack}${number}`)}
       />
