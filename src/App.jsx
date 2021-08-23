@@ -9,7 +9,7 @@ import Result from './components/Result'
 
 const App = () => {
   const [stack, setStack] = useState("");
-  const [showHistory, setShowHistory] = useState("");
+  const [isHistory, setIsHistory] = useState("");
   const items = words(stack, /[^-^+^*^/]+/g);
   const value = items.length > 0 ? items[items.length - 1] : "0";
   const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
@@ -39,7 +39,7 @@ const App = () => {
   }
   const _history = () => {
     let resultado = '';
-    if (showHistory) {
+    if (isHistory) {
       resultado =
         (
           <Result
@@ -67,7 +67,7 @@ const App = () => {
           }
         }
         }
-        showHistory={() => setShowHistory(!showHistory)}
+        showHistory={() => setIsHistory(!isHistory)}
       />
       <MathOperations
         onClickOperation={operation => setStack(`${stack}${operation}`)}
