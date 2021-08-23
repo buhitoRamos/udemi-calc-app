@@ -7,7 +7,6 @@ import words from 'lodash.words'
 import './App.css'
 import Result from './components/Result'
 
-// Generamos la función del compoente
 const App = () => {
   const [stack, setStack] = useState("");
   const items = words(stack, /[^-^+^*^/]+/g);
@@ -15,7 +14,7 @@ const App = () => {
   const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
   const mathOperations = ['+', '-', '*', '/'];
   const _keyInput = key  => {
-    
+
     const value = numbers.find(number => number === key.key);
     if (value) {
       setStack(`${stack}${value}`);
@@ -38,11 +37,6 @@ const App = () => {
     }
   }
  
-
-
-  // Lo que ejecuta la funcion 
-  //template literals o string son para concatenar string ecmaS 6 
-  // para diferenciasr operaciones aritmeticas de concatenacion de strings `${a} ${b}`
   return (
     <main className='react-calculator' onKeyUp= {(key)=> _keyInput(key)}>
       <Result value={value} />
@@ -65,7 +59,5 @@ const App = () => {
     </main>)
 
 }
-
-//Exportación 
 
 export default App
