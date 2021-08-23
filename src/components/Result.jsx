@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Result = ({ value }) => (
-  <div className="result">
+const Result = ({ value, clasType }) => (
+  <div className={clasType}>
     {value}
   </div>
 )
