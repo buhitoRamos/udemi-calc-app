@@ -56,6 +56,21 @@ button:hover {
   white-space: nowrap;
   box-sizing: border-box;
 }
+.history {
+  position: relative;
+  width: 320px;
+  height: 70px;
+  padding: 8px;
+  overflow: hidden;
+  background-color: rgba(243, 240, 240, 0.64);
+  font-size: 32px;
+  line-height: 2;
+  color: #000000;
+  text-align: right;
+  direction: rtl;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
 
 .functions button, .math-operations button {
   display: inline-block;
