@@ -12,31 +12,30 @@ const App = () => {
   const [stack, setStack] = useState("");
   const items = words(stack, /[^-^+^*^/]+/g);
   const value = items.length > 0 ? items[items.length - 1] : "0";
-  const keyImput = key  => {
-    console.log(key)
-    console.log(`presiono tecla ${key.key}`);
-    const number = key.code.includes("Numpad") && 
-    !key.code.includes("NumpadEnter") ?
-   words(key.key,  /[^-^+^*^/]+/g ) : false;
-    console.log(`el valor de number es ${number}`)
-    if(number.length > 0) { 
-      setStack(`${stack}${number}`)
-    } else {
-    let matOperation = key.code.includes("Divide") ||
-    key.code.includes("Numpad") ||
-    key.code.includes("Add") ||
-    key.code.includes("Mult") ||
-    key.code.includes("Sub") ?
-    key.key : false;
-    if(matOperation && matOperation !=="Enter") {
-      setStack(`${stack}${matOperation}`)
-    } else {
-     // setStack(`${eval(stack).toString()}`)
-    }
-
-    }
+  const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+  const mathOperations = ['+', '-', '*', '/'];
+  const _keyInput = key  => {
     
-
+    const value = numbers.find(number => number === key.key);
+    if (value) {
+      setStack(`${stack}${value}`);
+    } else {
+      const operation = mathOperations.find(mathOp => mathOp === key.key);
+      if( operation) {
+        setStack(`${stack}${operation}`);
+      } 
+        const equals = key.key === '=' ? true : false;
+        if(equals) {
+          _equals();   
+        }
+    }
+  }
+  const _equals = ()=> {
+    if (stack && stack > 0) {
+      setStack(`${eval(stack).toString()}`)
+    } else if(stack) {
+      setStack(`${eval(stack)}`)
+    }
   }
  
 
@@ -45,7 +44,7 @@ const App = () => {
   //template literals o string son para concatenar string ecmaS 6 
   // para diferenciasr operaciones aritmeticas de concatenacion de strings `${a} ${b}`
   return (
-    <main className='react-calculator' onKeyUp= {(key)=> keyImput(key)}>
+    <main className='react-calculator' onKeyUp= {(key)=> _keyInput(key)}>
       <Result value={value} />
       <Numbers onClickNumber={number => setStack(`${stack}${number}`)}
       />
@@ -61,7 +60,7 @@ const App = () => {
       />
       <MathOperations
         onClickOperation={operation => setStack(`${stack}${operation}`)}
-        onClickEqual={() => setStack(`${eval(stack).toString()}`)}
+        onClickEqual={() => _equals()}
       />
     </main>)
 
