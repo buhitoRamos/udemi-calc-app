@@ -9,37 +9,53 @@ import Result from './components/Result'
 
 const App = () => {
   const [stack, setStack] = useState("");
+  const [showHistory, setShowHistory] = useState("");
   const items = words(stack, /[^-^+^*^/]+/g);
   const value = items.length > 0 ? items[items.length - 1] : "0";
   const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
   const mathOperations = ['+', '-', '*', '/'];
-  const _keyInput = key  => {
+  const _keyInput = key => {
 
     const value = numbers.find(number => number === key.key);
     if (value) {
       setStack(`${stack}${value}`);
     } else {
       const operation = mathOperations.find(mathOp => mathOp === key.key);
-      if( operation) {
+      if (operation) {
         setStack(`${stack}${operation}`);
-      } 
-        const equals = key.key === '=' ? true : false;
-        if(equals) {
-          _equals();   
-        }
+      }
+      const equals = key.key === '=' ? true : false;
+      if (equals) {
+        _equals();
+      }
     }
   }
-  const _equals = ()=> {
+  const _equals = () => {
     if (stack && stack > 0) {
       setStack(`${eval(stack).toString()}`)
-    } else if(stack) {
+    } else if (stack) {
       setStack(`${eval(stack)}`)
     }
   }
- 
+  const _history = () => {
+    let resultado = '';
+    if (showHistory) {
+      resultado =
+        (
+          <Result
+            value={stack}
+            clasType={"history"} />
+        )
+    }
+    return resultado
+  }
+
+
+
   return (
-    <main className='react-calculator' onKeyUp= {(key)=> _keyInput(key)}>
-      <Result value={value} />
+    <main className='react-calculator' onKeyUp={(key) => _keyInput(key)}>
+      <Result value={value}
+        clasType={"result"} />
       <Numbers onClickNumber={number => setStack(`${stack}${number}`)}
       />
       <Functions
@@ -51,11 +67,16 @@ const App = () => {
           }
         }
         }
+        showHistory={() => setShowHistory(!showHistory)}
       />
       <MathOperations
         onClickOperation={operation => setStack(`${stack}${operation}`)}
         onClickEqual={() => _equals()}
       />
+
+      {
+        _history()
+      }
     </main>)
 
 }
