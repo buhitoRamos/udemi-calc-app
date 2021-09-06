@@ -32,13 +32,23 @@ const App = () => {
   }
   const _equals = () => {
     if (stack && stack > 0) {
-      setStack(`${eval(stack).toString()}`)
+      try {
+        setStack(`${eval(stack).toString()}`)
+      } catch (e) {
+        setStack("Error")
+      }
+      
     } else if (stack) {
-      setStack(`${eval(stack)}`)
+      try {
+        setStack(`${eval(stack)}`)
+      } catch (e) {
+        setStack("Error")
+      }
     }
   }
   const _history = () => {
     let resultado = '';
+   
     if (isHistory) {
       resultado =
         (
@@ -47,6 +57,7 @@ const App = () => {
             clasType={"history"} />
         )
     }
+    
     return resultado
   }
 
