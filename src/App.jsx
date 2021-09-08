@@ -9,7 +9,7 @@ import Result from './components/Result'
 
 const App = () => {
   const [stack, setStack] = useState("");
-  const [isHistory, setIsHistory] = useState("");
+  const [isHistory, setIsHistory] = useState(false);
   const items = words(stack, /[^-^+^*^/]+/g);
   const value = items.length > 0 ? items[items.length - 1] : "0";
   const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
@@ -54,7 +54,9 @@ const App = () => {
         (
           <Result
             value={stack}
-            clasType={"history"} />
+            classType={"history"}
+            isHistory={true}
+            />
         )
     }
     
@@ -65,8 +67,11 @@ const App = () => {
 
   return (
     <main className='react-calculator' onKeyUp={(key) => _keyInput(key)}>
+      {
+        _history()
+      }
       <Result value={value}
-        clasType={"result"} />
+        classType={"result"} />
       <Numbers onClickNumber={number => setStack(`${stack}${number}`)}
       />
       <Functions
@@ -84,10 +89,6 @@ const App = () => {
         onClickOperation={operation => setStack(`${stack}${operation}`)}
         onClickEqual={() => _equals()}
       />
-
-      {
-        _history()
-      }
     </main>)
 
 }
