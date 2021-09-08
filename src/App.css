@@ -58,17 +58,12 @@ button:hover {
 }
 .history {
   position: relative;
-  width: 320px;
-  height: 70px;
+  height: 30px;
   padding: 8px;
   overflow: hidden;
-  background-color: rgba(243, 240, 240, 0.64);
-  font-size: 32px;
-  line-height: 2;
-  color: #000000;
+  font-size: 20px;
+  color: #d63c6b;
   text-align: right;
-  direction: rtl;
-  white-space: nowrap;
   box-sizing: border-box;
 }
 
