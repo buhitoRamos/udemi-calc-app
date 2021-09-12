@@ -12,7 +12,11 @@ const App = () => {
   const [isHistory, setIsHistory] = useState(false);
   const negative = stack[0] ==='-' ? '-' : ''
   const items =  words(stack, /[^-^+^*^/]+/g);
-  const value =  items.length > 0 ? `${negative}` + items[items.length - 1] : "0";
+  const value =  items.length > 0 && items.length < 2 ?
+   `${negative}` + items[items.length - 1] :
+   items.length > 0 ? 
+   items[items.length - 1] :
+    "0";
   const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
   const mathOperations = ['+', '-', '*', '/'];
   const _keyInput = key => {

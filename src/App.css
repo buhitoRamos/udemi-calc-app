@@ -92,9 +92,6 @@ button:hover {
   float: left;
 }
 
-.numbers button:last-child {
-  width: 100%;
-}
 
 .functions {
   float: left;
