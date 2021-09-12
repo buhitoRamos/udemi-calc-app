@@ -10,8 +10,9 @@ import Result from './components/Result'
 const App = () => {
   const [stack, setStack] = useState("");
   const [isHistory, setIsHistory] = useState(false);
-  const items = words(stack, /[^-^+^*^/]+/g);
-  const value = items.length > 0 ? items[items.length - 1] : "0";
+  const negative = stack[0] ==='-' ? '-' : ''
+  const items =  words(stack, /[^-^+^*^/]+/g);
+  const value =  items.length > 0 ? `${negative}` + items[items.length - 1] : "0";
   const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
   const mathOperations = ['+', '-', '*', '/'];
   const _keyInput = key => {

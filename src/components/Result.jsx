@@ -13,6 +13,13 @@ const Result = ({ value, classType, isHistory }) => {
     } else {
       matOp = "";
     }
+  } else {
+    matOp = newValue[0]
+    if(matOp === '-') {
+      newValue = newValue.substring(1, newValue.length)
+    } else {
+      matOp=''
+    }
   }
 
   return (
