@@ -92,6 +92,9 @@ button:hover {
   float: left;
 }
 
+.numbers button:last-child {
+  width: 66%;
+}
 
 .functions {
   float: left;
