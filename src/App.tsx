@@ -1,5 +1,5 @@
 /* eslint no-eval: 0 */
-import React, { useState } from 'react'
+import React, { useState, FC } from 'react'
 import Functions from './components/Functions'
 import MathOperations from './components/MathOperations'
 import Numbers from './components/Numbers'
@@ -7,7 +7,7 @@ import words from 'lodash.words'
 import './App.css'
 import Result from './components/Result'
 
-const App = () => {
+const App: FC = () => {
   const [stack, setStack] = useState("");
   const [isHistory, setIsHistory] = useState(false);
   const negative = stack[0] ==='-' ? '-' : ''
@@ -19,7 +19,7 @@ const App = () => {
     "0";
   const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
   const mathOperations = ['+', '-', '*', '/'];
-  const _keyInput = key => {
+  const _keyInput = (key: React.KeyboardEvent<HTMLElement>) => {
 
     const value = numbers.find(number => number === key.key);
     if (value) {
@@ -36,7 +36,7 @@ const App = () => {
     }
   }
   const _equals = () => {
-    if (stack && stack > 0) {
+    if (stack && stack.length > 0) {
       try {
         setStack(`${eval(stack).toString()}`)
       } catch (e) {
@@ -52,10 +52,10 @@ const App = () => {
     }
   }
   const _history = () => {
-    let resultado = '';
+    let resultant = (<div></div>);
    
     if (isHistory) {
-      resultado =
+      resultant =
         (
           <Result
             value={stack}
@@ -65,7 +65,7 @@ const App = () => {
         )
     }
     
-    return resultado
+    return resultant
   }
 
 
@@ -76,8 +76,8 @@ const App = () => {
         _history()
       }
       <Result value={value}
-        classType={"result"} />
-      <Numbers onClickNumber={number => setStack(`${stack}${number}`)}
+      classType={"result"} isHistory={undefined} />
+      <Numbers onClickNumber={(number: any) => setStack(`${stack}${number}`)}
       />
       <Functions
         onContentClear={() => setStack("")}
