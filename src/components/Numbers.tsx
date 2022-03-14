@@ -1,10 +1,9 @@
-import React from 'react'
-import PropsTypes from 'prop-types'
-import Button from './Button'
+import React, {FC} from 'react'
+import Button, {ButtonClickHandler} from './Button'
 
 const numbers = [7, 8, 9, 4, 5, 6, 1, 2, 3, 0, '.']
 
-const renderButtons = onClickNumber => {
+const renderButtons = (onClickNumber: ButtonClickHandler) => {
   return (
     numbers.map(number =>
       <Button key={number}
@@ -14,15 +13,15 @@ const renderButtons = onClickNumber => {
     )
   )
 }
-
-const Numbers = ({ onClickNumber }) => (
+type Prop = {
+  onClickNumber: ButtonClickHandler
+}
+const Numbers: FC<Prop> = ({ onClickNumber }) => (
   <section className="numbers">
     {
       renderButtons(onClickNumber)
     }
   </section>
 )
-Numbers.PropsTypes = {
-  onClickNumber: PropsTypes.func.isRequired
-}
+
 export default Numbers

@@ -1,11 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-
+import React, {FC} from 'react'
 import './Button.css'
 //podemos eliminar las llaves y return cuando la funcion solo tiene un retorno, se puede quitar return 
 // y dejar solo los parentesis
 
-const Button = ({ text, type, clickHandler }) => {
+export type ButtonClickHandler = (text: string)=> void
+type Props = {
+  text: string,
+  type?: string,
+  clickHandler: ButtonClickHandler
+}
+
+const Button: FC<Props> = ({ text, type, clickHandler }) => {
  
   return (
     <button className={type} onClick={() => clickHandler(text)}>
@@ -14,9 +19,4 @@ const Button = ({ text, type, clickHandler }) => {
   )
 }
 
-Button.propTypes = {
-  type: PropTypes.string,
-  text: PropTypes.string.isRequired,
-  clickHandler: PropTypes.func.isRequired
-}
 export default Button

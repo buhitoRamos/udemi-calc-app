@@ -1,7 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FC } from 'react'
 
-const Result = ({ value, classType, isHistory }) => {
+type Prop = {
+  value: string,
+  classType: string,
+  isHistory?: boolean
+}
+const Result: FC<Prop> = ({ value, classType, isHistory }) => {
 
  let newValue = value;
  let matOp = ""
@@ -28,11 +32,6 @@ const Result = ({ value, classType, isHistory }) => {
      <span>{matOp}</span>
   </div>
   )
-}
-
-Result.propTypes = {
-  value: PropTypes.string.isRequired,
-  classType: PropTypes.string.isRequired,
 }
 
 Result.defaultProps = {
